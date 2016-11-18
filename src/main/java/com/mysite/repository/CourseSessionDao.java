@@ -19,7 +19,7 @@ import org.hibernate.Query;
 public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>{
     
     //return a list of session filtered by date
-    public List<CourseSession> filterByDate(Date date){
+    /*public List<CourseSession> filterByDate(Date date){
         //a finir
         Query courseSessionQuery = getSession().createQuery("FROM course_session cs WHERE :date BETWEEN cs.start_date AND cs.end_date");
         courseSessionQuery.setParameter("date", date);
@@ -36,7 +36,7 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
         
         return courseSessionQuery.list();
 
-    }
+    }*/
     
     
 }

@@ -5,6 +5,7 @@
  */
 package com.mysite.service;
 
+import com.mysite.repository.AbstractGenericDao;
 import com.mysite.repository.GenericDao;
 import java.io.Serializable;
 import java.util.List;
@@ -17,9 +18,10 @@ import java.util.List;
  */
 public abstract class GenericServiceImpl<E, K extends Serializable> implements GenericService<E, K> {
     
-    private GenericDao<E,K> genericDao;
+    private AbstractGenericDao<E,K> genericDao  = new AbstractGenericDao<E, K>() {
+};
     
-    public GenericServiceImpl(GenericDao<E,K> genericDao){
+    public GenericServiceImpl(AbstractGenericDao<E,K> genericDao){
         this.genericDao = genericDao;
     }
     
@@ -51,10 +53,10 @@ public abstract class GenericServiceImpl<E, K extends Serializable> implements G
         genericDao.delete(entity);
     }
     
-    @Override
+    /*@Override
     public void deleteAll(){
         genericDao.deleteAll();
-    }
+    }*/
     
     
     

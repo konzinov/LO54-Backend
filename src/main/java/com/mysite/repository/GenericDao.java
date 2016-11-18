@@ -26,15 +26,19 @@ public interface GenericDao<E,K extends Serializable> {
     
     void delete(E entity);
     
-    void deleteAll();
+    //void deleteAll();
     
     List<E> findAll();
     
     List<E> findAllByExample(E entity);
+    
+    //List<E> findBy(String column,Serializable param);
     
     public E find(K key);
     
     void clear();
     
     void flush();
+    
+    
 }

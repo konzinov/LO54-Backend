@@ -15,15 +15,6 @@ import org.hibernate.Query;
  * @author Rémi
  */
 public class CourseDao extends AbstractGenericDao<Course, Integer>{
-    
-    //return a list of course filtered by title
-    public List<Course> filterByTitle(String title){
-    
-        Query courseQuery = getSession().createQuery("from Course c where title LIKE :title");
-        courseQuery.setParameter("title", "%"+title+"%");
         
-        return courseQuery.list();
-    }
-    
     
 }

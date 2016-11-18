@@ -5,16 +5,13 @@
  */
 package com.mysite.service;
 
-import com.mysite.entity.Course;
-import com.mysite.repository.CourseDao;
+import com.mysite.entity.Location;
 import java.io.Serializable;
-import java.util.List;
-import org.hibernate.Query;
 
 /**
  *
  * @author Rémi
  */
-public class CourseService extends GenericServiceImpl<Course, Integer>{
-   
+public class LocationService extends GenericServiceImpl<Location, Integer> {
+    
 }

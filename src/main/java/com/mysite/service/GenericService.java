@@ -20,6 +20,6 @@ public interface GenericService<E, K> {
     public void add(E entity);
     public void update(E entity);
     public void delete(E entity);
-    public void deleteAll();
+    //public void deleteAll();
     
 }

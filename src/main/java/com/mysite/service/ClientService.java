@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ClientService  extends GenericServiceImpl<Client,Integer>{
     
-    ClientDao clientDao;
+    /*ClientDao clientDao;
     
     public List<Client> getAllClient(){
         return clientDao.findAll();
@@ -38,6 +38,6 @@ public class ClientService  extends GenericServiceImpl<Client,Integer>{
     public boolean removeClient(Integer id){
         return clientDao.removeClientById(id);
     }
-    
+    */
     //public List<CourseSession> getCourseSession(Client client);    
 }

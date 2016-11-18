@@ -15,23 +15,6 @@ import org.hibernate.Query;
  */
 public class ClientDao extends AbstractGenericDao<Client,Integer> {
     
-    public boolean removeClientById(Integer id){
-        Query clientTaskQuery = getSession().createQuery("from Client u where :id");
-        clientTaskQuery.setParameter("id", id);
-        
-        return clientTaskQuery.executeUpdate() > 0;
-    }
-    
-    //Register the client to a specific course_session
-    public boolean registerNewClient(){
-        
-        
-        
-    }
-    
-    
-    
-    
     
     
 }

@@ -1,5 +1,5 @@
 package com.mysite.entity;
-// Generated 5 nov. 2016 18:40:47 by Hibernate Tools 4.3.1
+// Generated 18 nov. 2016 19:03:38 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package com.mysite.entity;
 public class Client  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private CourseSession courseSession;
      private String lastname;
      private String firstname;
@@ -21,16 +21,14 @@ public class Client  implements java.io.Serializable {
     }
 
 	
-    public Client(int id, CourseSession courseSession, String lastname, String firstname, String address, String phone) {
-        this.id = id;
+    public Client(CourseSession courseSession, String lastname, String firstname, String address, String phone) {
         this.courseSession = courseSession;
         this.lastname = lastname;
         this.firstname = firstname;
         this.address = address;
         this.phone = phone;
     }
-    public Client(int id, CourseSession courseSession, String lastname, String firstname, String address, String phone, String email) {
-       this.id = id;
+    public Client(CourseSession courseSession, String lastname, String firstname, String address, String phone, String email) {
        this.courseSession = courseSession;
        this.lastname = lastname;
        this.firstname = firstname;
@@ -39,11 +37,11 @@ public class Client  implements java.io.Serializable {
        this.email = email;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public CourseSession getCourseSession() {

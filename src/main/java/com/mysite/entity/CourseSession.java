@@ -1,5 +1,5 @@
 package com.mysite.entity;
-// Generated 5 nov. 2016 18:40:47 by Hibernate Tools 4.3.1
+// Generated 18 nov. 2016 19:03:38 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,7 +11,8 @@ import java.util.Set;
  */
 public class CourseSession  implements java.io.Serializable {
 
-     private int id;
+
+     private Integer id;
      private Course course;
      private Location location;
      private Date startDate;
@@ -22,15 +23,13 @@ public class CourseSession  implements java.io.Serializable {
     }
 
 	
-    public CourseSession(int id, Course course, Location location, Date startDate, Date endDate) {
-        this.id = id;
+    public CourseSession(Course course, Location location, Date startDate, Date endDate) {
         this.course = course;
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    public CourseSession(int id, Course course, Location location, Date startDate, Date endDate, Set clients) {
-       this.id = id;
+    public CourseSession(Course course, Location location, Date startDate, Date endDate, Set clients) {
        this.course = course;
        this.location = location;
        this.startDate = startDate;
@@ -38,11 +37,11 @@ public class CourseSession  implements java.io.Serializable {
        this.clients = clients;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Course getCourse() {
