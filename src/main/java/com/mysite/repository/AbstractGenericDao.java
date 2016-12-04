@@ -7,12 +7,9 @@ package com.mysite.repository;
 
 import com.mysite.tools.HibernateUtil;
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
@@ -121,14 +118,6 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         } 
         
     }
-    
-    /*@Override
-    public void deleteAll(){
-        List<E> entities = findAll();
-        for(E entity : entities){
-            session.delete(entity);
-        }
-    }*/
     
     @Override
     public List<E> findAll(){

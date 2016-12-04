@@ -13,9 +13,6 @@ import org.hibernate.Query;
  *
  * @author Rémi
  */
-public class ClientDao extends AbstractGenericDao<Client,Integer> {
-    
-    
-    
+public class ClientDao extends AbstractGenericDao<Client,Integer> {  
 }
 
