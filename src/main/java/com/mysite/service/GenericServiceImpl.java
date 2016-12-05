@@ -18,11 +18,11 @@ import java.util.List;
  */
 public abstract class GenericServiceImpl<E, K extends Serializable> implements GenericService<E, K> {
     
-    private AbstractGenericDao<E,K> genericDao  = new AbstractGenericDao<E, K>() {
-};
+    private AbstractGenericDao<E,K> genericDao ;
     
-    public GenericServiceImpl(AbstractGenericDao<E,K> genericDao){
-        this.genericDao = genericDao;
+    public GenericServiceImpl(Class c){
+        this.genericDao = new AbstractGenericDao<E, K>(c) {
+        };
     }
     
     public GenericServiceImpl(){

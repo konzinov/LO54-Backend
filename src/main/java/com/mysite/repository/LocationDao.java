@@ -13,4 +13,8 @@ import com.mysite.entity.Location;
  */
 public class LocationDao extends AbstractGenericDao<Location, Integer> {
     
+    public LocationDao(Class c) {
+        super(c);
+    }
+    
 }

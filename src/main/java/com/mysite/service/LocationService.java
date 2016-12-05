@@ -14,4 +14,7 @@ import java.io.Serializable;
  */
 public class LocationService extends GenericServiceImpl<Location, Integer> {
     
+    public LocationService(Class c){
+        super(c);
+    }
 }

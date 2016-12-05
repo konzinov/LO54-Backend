@@ -7,6 +7,8 @@ package com.mysite.repository;
 
 import com.mysite.tools.HibernateUtil;
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -18,6 +20,7 @@ import org.hibernate.criterion.Example;
  * @param <E>
  * @param <K>
  */
+@SuppressWarnings("unchecked")
 public abstract class AbstractGenericDao<E,K extends Serializable> implements GenericDao<E,K> {
         
     protected Class<? extends E> entityClass;
@@ -28,7 +31,9 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         this.entityClass = (Class<E>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }*/
 
-    public AbstractGenericDao() {
+    public AbstractGenericDao(Class c) {
+      // this.entityClass =    (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+      this.entityClass = c;
     }
     
      
@@ -126,6 +131,7 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         try{
             session.beginTransaction();
             result = session.createCriteria(this.entityClass).list();
+            //result =session.createQuery("from "+E.class.getName());
             session.getTransaction().commit();
         }catch(HibernateException he){
             he.printStackTrace();

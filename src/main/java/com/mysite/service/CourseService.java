@@ -15,6 +15,9 @@ import org.hibernate.Query;
  *
  * @author Rémi
  */
-public class CourseService extends GenericServiceImpl<Course, Integer>{
+ public class CourseService extends GenericServiceImpl<Course, Integer>{
    
+     public CourseService(Class c){
+         super(c);
+     }
 }
