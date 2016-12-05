@@ -36,6 +36,7 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
       this.entityClass = c;
     }
     
+    
      
     
     public E findById(final Serializable id){
@@ -54,6 +55,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         }
         
         return result;
@@ -77,6 +87,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         }
         
         return result; 
@@ -99,6 +118,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         }        
         
     }
@@ -120,6 +148,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         } 
         
     }
@@ -142,6 +179,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         } 
         return result;
     }
@@ -165,6 +211,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         } 
         return result; 
     }
@@ -187,6 +242,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         } 
         return result; 
          
@@ -235,6 +299,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         } 
         
     }
@@ -256,6 +329,15 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
                     he2.printStackTrace();
                 }
             }
+        }finally{
+            if(session != null){
+                try{
+                    session.close();
+                }catch(HibernateException he){
+                    he.printStackTrace();
+                }
+            }
+            
         }
     }
 }

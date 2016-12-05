@@ -7,10 +7,17 @@ package com.mysite.repository;
 
 import com.mysite.entity.CourseSession;
 import com.mysite.entity.Location;
+import com.mysite.tools.HibernateUtil;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -26,6 +33,8 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
         
         return courseSessionQuery.list();
     }
+    
+    
     
     //return a list of session filtered by location
     public List<CourseSession> filterByLocation(Location location){
@@ -62,5 +71,53 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
 
     }*/
     
+    public List<CourseSession> findByColumns(Map<String,String> map){
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        Date date_start = null;
+        Date date_end = null;
+        Integer location_id = null;
+        Integer course_id = null;
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try{
+            date_start =  formatter.parse(map.get("date_start"));
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        
+        try{
+            date_end = formatter.parse(map.get("date_end"));
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+                
+        Criteria criteria = session.createCriteria(CourseSession.class);
+        
+        if(map.get("date_start") != null){
+            criteria.add(Restrictions.gt("date_start", date_start));
+        }
+        
+        if(map.get("date_end") != null){
+            criteria.add(Restrictions.lt("date_end", date_end));
+        }
+        
+        if(map.get("location_id") != null){
+            criteria.add(Restrictions.eq("location.id", Integer.parseInt(map.get(location_id))));
+        }
+        
+        if(map.get("course_id") != null){
+            criteria.add(Restrictions.eq("course.id", Integer.parseInt(map.get(course_id))));
+        }
+        
+        List<CourseSession> result = criteria.list();
+        
+        return result;
+    }
+    
+            
+    
+            
     
 }

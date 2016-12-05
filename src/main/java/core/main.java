@@ -27,6 +27,8 @@ public class main {
         locations = ls.getAll();
         System.out.println(locations.get(0).getCity());
         
+        
+        
               
     }
 }
