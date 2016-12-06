@@ -15,8 +15,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -96,11 +99,11 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
         Criteria criteria = session.createCriteria(CourseSession.class);
         
         if(map.get("date_start") != null){
-            criteria.add(Restrictions.gt("date_start", date_start));
+            criteria.add(Restrictions.gt("dateStart", date_start));
         }
         
         if(map.get("date_end") != null){
-            criteria.add(Restrictions.lt("date_end", date_end));
+            criteria.add(Restrictions.lt("dateEnd", date_end));
         }
         
         if(map.get("location_id") != null){
@@ -113,11 +116,26 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
         
         List<CourseSession> result = criteria.list();
         
+        session.close();
         return result;
     }
     
             
-    
+    public List<CourseSession> findByDate(Date startDate){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(CourseSession.class, "coursesession")
+                                   .setFetchMode("coursesession.location", FetchMode.JOIN)
+                                   .createAlias("coursesession.location", "location")
+                                   .setFetchMode("coursesession.course", FetchMode.JOIN)
+                                   .createAlias("coursesession.course", "course")
+                                   .add(Restrictions.gt("startDate", startDate))
+                                   .addOrder(Order.asc("startDate"))
+                                   .setMaxResults(3);
+        List<CourseSession> result = criteria.list();
+        session.close();
+        
+        return result;
+    }
             
     
 }

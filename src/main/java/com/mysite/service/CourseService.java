@@ -6,10 +6,7 @@
 package com.mysite.service;
 
 import com.mysite.entity.Course;
-import com.mysite.repository.CourseDao;
 import java.io.Serializable;
-import java.util.List;
-import org.hibernate.Query;
 
 /**
  *

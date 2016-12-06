@@ -2,6 +2,7 @@ package com.mysite.entity;
 // Generated 18 nov. 2016 19:03:38 by Hibernate Tools 4.3.1
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -81,7 +82,10 @@ public class CourseSession  implements java.io.Serializable {
     }
 
 
-
+    public String formatDate(Date d){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+        return dateFormat.format(d);
+    }
 
 }
 
