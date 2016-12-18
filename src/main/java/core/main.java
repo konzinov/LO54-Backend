@@ -13,7 +13,9 @@ import com.mysite.service.ClientService;
 import com.mysite.service.CourseService;
 import com.mysite.service.CourseSessionService;
 import com.mysite.service.LocationService;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -31,9 +33,12 @@ public class main {
         locations = ls.getAll();
         System.out.println(locations.get(0).getCity());
         System.out.println(sessions.get(1).getLocation().getCity());
+        System.out.println("Select one service "+cs.get(Integer.parseInt("34")));
         
-        
-        
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("course_id", "BD50");
+        sessions = cs.showSessionFromCriteria(params);
+        System.out.println(sessions.get(1).getStartDate());
         
               
     }

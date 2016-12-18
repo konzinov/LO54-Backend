@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author Rémi
  */
-public class CourseSessionService extends GenericServiceImpl<CourseSession, Integer> {
+public class CourseSessionService extends GenericServiceImpl<CourseSession, Integer> implements Serializable{
     
     public CourseSessionService(Class c){
         super(c);

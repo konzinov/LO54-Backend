@@ -14,30 +14,9 @@ import java.util.List;
  * @author Rémi
  */
 public class ClientService  extends GenericServiceImpl<Client,Integer>{
-    
-    /*ClientDao clientDao;
-    
-    public List<Client> getAllClient(){
-        return clientDao.findAll();
+
+    public ClientService(Class c) {
+        super(c);
     }
     
-    public void addNewClient(Client client){
-        Client cli = new Client();
-        cli.setFirstname(client.getFirstname());
-        cli.setLastname(client.getLastname());
-        List<Client> cliList = clientDao.findAllByExample(cli);
-        if(cliList == null || cliList.isEmpty()){
-            Long id = (Long) clientDao.save(client);
-            System.out.println("If of new Client "+ id);
-            
-        } else {
-            System.out.println("Client " + cli + " already exists");
-        }
-    }
-    
-    public boolean removeClient(Integer id){
-        return clientDao.removeClientById(id);
-    }
-    */
-    //public List<CourseSession> getCourseSession(Client client);    
 }
