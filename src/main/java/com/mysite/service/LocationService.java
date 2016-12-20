@@ -12,9 +12,11 @@ import java.io.Serializable;
  *
  * @author Rémi
  */
-public class LocationService extends GenericServiceImpl<Location, Integer> {
+public class LocationService extends GenericServiceImpl<Location, Integer> implements Serializable{
     
     public LocationService(Class c){
         super(c);
     }
+    
+    
 }

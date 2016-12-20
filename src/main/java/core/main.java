@@ -13,6 +13,10 @@ import com.mysite.service.ClientService;
 import com.mysite.service.CourseService;
 import com.mysite.service.CourseSessionService;
 import com.mysite.service.LocationService;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +44,9 @@ public class main {
         sessions = cs.showSessionFromCriteria(params);
         System.out.println(sessions.get(1).getStartDate());
         
-              
+        params.clear();
+        params.put("course_title","Java");
+        sessions = cs.showSessionFromCriteria(params);
+        System.out.println(sessions);
     }
 }

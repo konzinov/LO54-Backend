@@ -11,6 +11,7 @@ import com.mysite.tools.HibernateUtil;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -34,9 +36,10 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
    
     public List<CourseSession> findByColumns(Map<String,String> map){
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Date date_start = null;
         Date date_end = null;
+        Date date = null;
         
         Session session = HibernateUtil.getSessionFactory().openSession();
                 
@@ -46,22 +49,31 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
                     .setFetchMode("coursesession.course", FetchMode.JOIN)
                     .createAlias("coursesession.course", "course");
         
-        if(map.get("date") != null){
+        if(map.get("date_start") != null){
             try{
-                date_start =  formatter.parse(map.get("date"));
+                date_start =  formatter.parse(map.get("date_start"));
             }catch(ParseException e){
                 e.printStackTrace();
             }
-            criteria.add(Restrictions.gt("dateStart", date_start));
+            criteria.add(Restrictions.gt("startDate", date_start));
         }
         
-        if(map.get("date") != null){
+        if(map.get("date_end") != null){
             try{
-                date_end = formatter.parse(map.get("date"));
+                date_end = formatter.parse(map.get("date_end"));
             }catch(ParseException e){
                 e.printStackTrace();
             }
-            criteria.add(Restrictions.lt("dateEnd", date_end));
+            criteria.add(Restrictions.lt("endDate", date_end));
+        }
+        
+           if(map.get("date") != null){
+            try{
+                date = formatter.parse(map.get("date"));
+            }catch(ParseException e){
+                e.printStackTrace();
+            }
+            criteria.add(Restrictions.eq("startDate", date));
         }
         
         if(map.get("location_id") != null){
@@ -70,6 +82,10 @@ public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer>
         
         if(map.get("course_id") != null){
             criteria.add(Restrictions.eq("course.code", map.get("course_id")));
+        }
+        
+        if(map.get("course_title")!=null){
+            criteria.add(Restrictions.like("course.title", map.get("course_title"),MatchMode.ANYWHERE));
         }
         
         List<CourseSession> result = criteria.list();
