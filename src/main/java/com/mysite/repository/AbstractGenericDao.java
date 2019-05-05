@@ -22,29 +22,17 @@ import org.hibernate.criterion.Example;
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractGenericDao<E,K extends Serializable> implements GenericDao<E,K> {
-        
-    protected Class<? extends E> entityClass;
-    
-    private Session session;
-    
-    /*public AbstractGenericDao(){
-        this.entityClass = (Class<E>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-    }*/
 
-    public AbstractGenericDao(Class c) {
-      // this.entityClass =    (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-      this.entityClass = c;
-    }
-    
-    
-     
-    
+    private Session session;
+
+    abstract Class<E> getEntityClass();
+
     public E findById(final Serializable id){
         session = HibernateUtil.getSessionFactory().openSession();
         E result = null;
         try{
             session.beginTransaction();
-            result = (E) session.get(this.entityClass, id);
+            result = (E) session.get(this.getEntityClass(), id);
             session.getTransaction().commit();
         }catch(HibernateException he){
             he.printStackTrace();
@@ -167,7 +155,7 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         List<E> result = null;
         try{
             session.beginTransaction();
-            result = session.createCriteria(this.entityClass).list();
+            result = session.createCriteria(this.getEntityClass()).list();
             //result =session.createQuery("from "+E.class.getName());
             session.getTransaction().commit();
         }catch(HibernateException he){
@@ -200,7 +188,7 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         List<E> result = null;
         try{
             session.beginTransaction();
-            result = session.createCriteria(this.entityClass).add(example).list();
+            result = session.createCriteria(this.getEntityClass()).add(example).list();
             session.getTransaction().commit();
         }catch(HibernateException he){
             he.printStackTrace();
@@ -231,7 +219,7 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         E result = null;
         try{
             session.beginTransaction();
-            result = (E) session.get(entityClass,key);
+            result = (E) session.get(this.getEntityClass(),key);
             session.getTransaction().commit();
         }catch(HibernateException he){
             he.printStackTrace();
@@ -255,33 +243,6 @@ public abstract class AbstractGenericDao<E,K extends Serializable> implements Ge
         return result; 
          
     }
-    
-    /*filtres titre, date et location*/
-    /*@Override
-    public List<E> findBy(String column,Serializable param){
-        session = HibernateUtil.getSessionFactory().openSession();
-        List<E> result = null;
-        try{
-            String queryString =null
-            Query findByQuery = session.createQuery("FROM :table WHERE :column ");
-            findByQuery.setParameter("table", entityClass);
-            session.beginTransaction();
-            result = session.get(this.entityClass, param).list();
-            session.getTransaction().commit();
-        }catch(HibernateException he){
-            he.printStackTrace();
-            if(session.getTransaction() != null){
-                try{
-                    session.getTransaction().rollback();
-                }catch(HibernateException he2){
-                    he2.printStackTrace();
-                }
-            }
-        }
-        
-        return result;
-        
-    }*/
     
     @Override
     public void clear(){

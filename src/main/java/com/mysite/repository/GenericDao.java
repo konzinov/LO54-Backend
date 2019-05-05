@@ -5,11 +5,11 @@
  */
 package com.mysite.repository;
 
-import com.mysite.tools.HibernateUtil;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+import java.util.Map;
+
 
 /**
  *
@@ -32,7 +32,9 @@ public interface GenericDao<E,K extends Serializable> {
     
     List<E> findAllByExample(E entity);
     
-    //List<E> findBy(String column,Serializable param);
+    default List<E> findBy(Map<String, String> params) {
+        return Collections.emptyList();
+    }
     
     public E find(K key);
     

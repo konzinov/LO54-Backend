@@ -16,10 +16,13 @@ import java.util.List;
 public interface GenericService<E, K> {
     
     public List<E> getAll();
+
     public E get(K id);
+
     public void add(E entity);
+
     public void update(E entity);
+
     public void delete(E entity);
-    //public void deleteAll();
-    
+
 }

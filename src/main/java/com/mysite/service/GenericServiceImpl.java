@@ -9,6 +9,7 @@ import com.mysite.repository.AbstractGenericDao;
 import com.mysite.repository.GenericDao;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,16 +19,12 @@ import java.util.List;
  */
 public abstract class GenericServiceImpl<E, K extends Serializable> implements GenericService<E, K> {
     
-    private AbstractGenericDao<E,K> genericDao ;
+    private GenericDao<E,K> genericDao ;
     
-    public GenericServiceImpl(Class c){
-        this.genericDao = new AbstractGenericDao<E, K>(c) {
-        };
+    public GenericServiceImpl(GenericDao<E, K> genericDao){
+        this.genericDao = genericDao;
     }
-    
-    public GenericServiceImpl(){
-    }
-    
+
     @Override
     public List<E> getAll(){
         return genericDao.findAll();
@@ -52,12 +49,8 @@ public abstract class GenericServiceImpl<E, K extends Serializable> implements G
     public void delete(E entity){
         genericDao.delete(entity);
     }
-    
-    /*@Override
-    public void deleteAll(){
-        genericDao.deleteAll();
-    }*/
-    
-    
-    
+
+    public List<E> findBy(Map<String, String> map) {
+        return genericDao.findBy(map);
+    }
 }

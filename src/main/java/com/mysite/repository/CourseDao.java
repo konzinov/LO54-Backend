@@ -15,10 +15,9 @@ import org.hibernate.Query;
  * @author Rémi
  */
 public class CourseDao extends AbstractGenericDao<Course, Integer>{
-        
-    public CourseDao(Class c) {
-        super(c);
-    }
-        
-    
+
+	@Override
+	Class<Course> getEntityClass() {
+		return Course.class;
+	}
 }

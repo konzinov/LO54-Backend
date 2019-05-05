@@ -6,15 +6,14 @@
 package com.mysite.service;
 
 import com.mysite.entity.Course;
-import java.io.Serializable;
+import com.mysite.repository.CourseDao;
 
 /**
- *
  * @author Rémi
  */
- public class CourseService extends GenericServiceImpl<Course, Integer>{
-   
-     public CourseService(Class c){
-         super(c);
-     }
+public class CourseService extends GenericServiceImpl<Course, Integer> {
+
+	public CourseService() {
+		super(new CourseDao());
+	}
 }

@@ -6,7 +6,10 @@
 package com.mysite.service;
 
 import com.mysite.entity.Location;
+import com.mysite.repository.LocationDao;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -14,9 +17,13 @@ import java.io.Serializable;
  */
 public class LocationService extends GenericServiceImpl<Location, Integer> implements Serializable{
     
-    public LocationService(Class c){
-        super(c);
+    public LocationService(){
+        super(new LocationDao());
     }
-    
-    
+
+    @Override
+    public List<Location> getAll() {
+        LocationDao locationDao  = new LocationDao();
+        return locationDao.findAll();
+    }
 }

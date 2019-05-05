@@ -8,13 +8,12 @@ package com.mysite.repository;
 import com.mysite.entity.Location;
 
 /**
- *
  * @author Rémi
  */
 public class LocationDao extends AbstractGenericDao<Location, Integer> {
-    
-    public LocationDao(Class c) {
-        super(c);
-    }
-    
+
+	@Override
+	Class<Location> getEntityClass() {
+		return Location.class;
+	}
 }

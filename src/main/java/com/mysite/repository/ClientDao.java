@@ -6,17 +6,17 @@
 package com.mysite.repository;
 
 import com.mysite.entity.Client;
-import com.mysite.repository.GenericDao;
-import org.hibernate.Query;
+
 
 /**
  *
  * @author Rémi
  */
-public class ClientDao extends AbstractGenericDao<Client,Integer> {  
+public class ClientDao extends AbstractGenericDao<Client,Integer> {
 
-    public ClientDao(Class c) {
-        super(c);
-    }
+	@Override
+	Class<Client> getEntityClass() {
+		return Client.class;
+	}
 }
 

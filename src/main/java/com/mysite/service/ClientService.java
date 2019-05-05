@@ -7,16 +7,14 @@ package com.mysite.service;
 
 import com.mysite.entity.Client;
 import com.mysite.repository.ClientDao;
-import java.util.List;
 
 /**
- *
  * @author Rémi
  */
-public class ClientService  extends GenericServiceImpl<Client,Integer>{
+public class ClientService extends GenericServiceImpl<Client, Integer> {
 
-    public ClientService(Class c) {
-        super(c);
-    }
-    
+	public ClientService() {
+		super(new ClientDao());
+	}
+
 }
