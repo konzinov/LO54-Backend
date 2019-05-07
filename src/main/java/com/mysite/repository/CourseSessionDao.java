@@ -23,6 +23,7 @@ import java.util.Map;
 /**
  * @author Rémi
  */
+@SuppressWarnings("unchecked")
 public class CourseSessionDao extends AbstractGenericDao<CourseSession, Integer> {
 
 	@Override
